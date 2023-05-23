@@ -1,26 +1,58 @@
 import React from 'react';
-import logo from './logo.svg';
+import Header from './components/Header/Header';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+interface AppState {
+  currentTime: string;
+  language: string;
+  timerID: NodeJS.Timeout | null;
+}
+
+class App extends React.Component<{}, AppState> {
+  constructor(props: {}) {
+    super(props);
+    this.state = {
+      currentTime: new Date().toLocaleTimeString(),
+      language: 'RU',
+      timerID: null,
+    };
+  }
+
+  componentDidMount() {
+    const timerID = setInterval(() => this.updateTime(), 1000);
+    this.setState({ timerID });
+  }
+
+  componentWillUnmount() {
+    const { timerID } = this.state;
+    if (timerID) {
+      clearInterval(timerID);
+    }
+  }
+
+  updateTime() {
+    this.setState({
+      currentTime: new Date().toLocaleTimeString(),
+    });
+  }
+
+  changeLanguage(language: string) {
+    this.setState({ language });
+  }
+
+  render() {
+    const { currentTime, language } = this.state;
+
+    return (
+      <div>
+        <Header
+          currentTime={currentTime}
+          language={language}
+          changeLanguage={(language) => this.changeLanguage(language)}
+        />
+      </div>
+    );
+  }
 }
 
 export default App;
