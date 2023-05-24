@@ -1,0 +1,35 @@
+.reviews-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.reviews-group {
+  margin: 20px 20px 20px 150px;
+  min-height: 500px;
+}
+
+.review {
+  margin-bottom: 10px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.button {
+  background-color: #b6d3e8;
+  padding: 5px 10px;
+  margin: 2px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.active {
+  background-color: rgb(167, 104, 227);
+  color: #fff;
+  font-weight: 600;
+}

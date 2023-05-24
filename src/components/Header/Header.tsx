@@ -1,16 +1,15 @@
 import React from 'react';
 import logo from '../../assets/img/logo-github.png';
-import './style.css';
+import './styles.css';
 
 interface HeaderProps {
   currentTime: string;
-  language: string;
   changeLanguage: (language: string) => void;
 }
 
 class Header extends React.Component<HeaderProps> {
   render() {
-    const { currentTime, language, changeLanguage } = this.props;
+    const { currentTime, changeLanguage } = this.props;
 
     return (
       <div className="header">
@@ -30,7 +29,6 @@ class Header extends React.Component<HeaderProps> {
           <option value="EN">EN</option>
         </select>
 
-        <div>{language}</div>
         <div className="time">{currentTime}</div>
       </div>
     );

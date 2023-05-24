@@ -1,5 +1,7 @@
 import React from 'react';
+import reviewsData from './data.json';
 import Header from './components/Header/Header';
+import Main from './components/Main/Main';
 import './App.css';
 
 interface AppState {
@@ -13,7 +15,7 @@ class App extends React.Component<{}, AppState> {
     super(props);
     this.state = {
       currentTime: new Date().toLocaleTimeString(),
-      language: 'RU',
+      language: 'ru',
       timerID: null,
     };
   }
@@ -47,8 +49,11 @@ class App extends React.Component<{}, AppState> {
       <div>
         <Header
           currentTime={currentTime}
-          language={language}
           changeLanguage={(language) => this.changeLanguage(language)}
+        />
+        <Main
+          language={language}
+          reviewsData={reviewsData}
         />
       </div>
     );
